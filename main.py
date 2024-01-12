@@ -1,53 +1,51 @@
 from codrone_edu.drone import *
-
 import time
-import math 
+import random
+
+
 
 drone = Drone()
 drone.pair()
+# drone.takeoff()
+
+def Spiral():
+    for x in range(3):
+        drone.go(20, 0, 50, 15, 4)
+
+    drone.land()
+
+def Sway(parameter):
+    for x in range(parameter):
+        drone.set_roll(25)
+        drone.move(1.5)
+        drone.set_roll(-43)
+        drone.move(3)
+
+
+
+# Music 2:03 - 2:23, initial phase
+    # code that section, light code basic movment
+
 drone.takeoff()
+drone.hover(2)
+Sway(3)
+drone.set_yaw (100)
+drone.set_yaw (-100)
 
-def xCoordinates():
-    xAxis = 0
-    increment = 0.1
-    direction = 1
-    while True:
-        print(xAxis)
-        
-        xAxis += increment * direction
-        xAxis = round(xAxis, 2)
-        
-        if xAxis >= 1:
-            direction = -1
-            xAxis = 1
-        elif xAxis <= -1:
-            direction = 1
-            xAxis = -1
-        yAxisPositive = (math.sqrt( 2 * ((-2 * (xAxis**2)) + math.sqrt((8*(xAxis)**2) + 1) - 1) ) / 2)
-        yAxisNegative = -1 * (math.sqrt( 2 * ((-2 * (xAxis**2)) + math.sqrt((8*(xAxis)**2) + 1) - 1) ) / 2)
 
-        if direction == 1 and xAxis >= 0:
-            yAxis = yAxisNegative
-            print("Going forward in positive")
-            drone.move_forward(distance=xAxis,units='ft', speed=1)
-            drone.move_right(distance=yAxis, units='ft', speed=1)
-        elif direction == -1 and xAxis >=0:
-            yAxis = yAxisPositive
-            print("Returning")
-            drone.move_backward(distance=xAxis,units='ft', speed=1)
-            drone.move_left(distance=yAxis, units='ft', speed=1)
-        elif direction == -1 and xAxis <= 0:
-            yAxis = yAxisNegative
-            print("Negative Region Returning")
-            drone.move_backward(distance=xAxis,units='ft', speed=1)
-            drone.move_right(distance=yAxis, units='ft', speed=1)
-        elif direction == 1 and xAxis <= 0:
-            yAxis = yAxisPositive
-            print("Negative Region Positive")
-            drone.move_forward(distance=xAxis,units='ft', speed=1)
-            drone.move_left(distance=yAxis, units='ft', speed=1)
-        print(f'This is the y axis: {yAxis}')
-        time.sleep(1)
-    
+# 2:17-2:18 is where it starts to move, left and right
 
-xCoordinates()
+
+
+# Music 2:23 - 3:30, build up
+    # code that section, spirals, circle, squares
+
+# Music 3:30 - 3:50, crazy stuff
+    # code that section, flips
+
+# Music 3:50 - 4:10, calm down return to initial phase
+    # code that section, slow down to basic music, small cicles and land.
+
+
+drone.land()
+drone.close()

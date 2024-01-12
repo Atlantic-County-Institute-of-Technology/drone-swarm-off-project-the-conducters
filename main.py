@@ -8,18 +8,21 @@ drone = Drone()
 drone.pair()
 # drone.takeoff()
 
-def Spiral():
+def Spiral(seconds):
     for x in range(3):
-        drone.go(20, 0, 50, 15, 4)
-
+        drone.go(20, 0, 50, 15, seconds)
+    drone.set_yaw(100)
+    drone.move(1)
     drone.land()
 
-def Sway(parameter):
-    for x in range(parameter):
-        drone.set_roll(25)
+def Sway(amountSway):
+    for x in range(amountSway):
+        drone.set_roll(50)
         drone.move(1.5)
-        drone.set_roll(-43)
+        time.sleep(2)
+        drone.set_roll(-50)
         drone.move(3)
+        time.sleep(2)
 
 
 
@@ -28,13 +31,14 @@ def Sway(parameter):
 
 drone.takeoff()
 drone.hover(2)
-Sway(3)
-drone.set_yaw (100)
-drone.set_yaw (-100)
+Sway(2)
+
 
 
 # 2:17-2:18 is where it starts to move, left and right
 
+drone.hover(1)
+# Spiral(2)
 
 
 # Music 2:23 - 3:30, build up

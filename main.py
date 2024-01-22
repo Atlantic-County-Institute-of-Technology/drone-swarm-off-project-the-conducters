@@ -1,13 +1,17 @@
+# Meant to go with Frostpunk's: The City Must Survive
+
+# Import specified packages
 from codrone_edu.drone import *
 import time
 import random
 
 
-
+# Drone's connection to the program
 drone = Drone()
 drone.pair()
 # drone.takeoff()
 
+# Function made to have the drone spiral up and down, it works spiraling up but not down.
 def Spiral(seconds, upDown):
     global roll, throttle
     if upDown == "up":
@@ -22,6 +26,7 @@ def Spiral(seconds, upDown):
     drone.move(1)
     drone.land()
 
+# Function meant to make the drone sway left and right for a specific amount of times
 def Sway(amountSway):
     for x in range(amountSway):
         drone.set_roll(50)
@@ -31,6 +36,7 @@ def Sway(amountSway):
         drone.move(1.5)
         time.sleep(1.5)
 
+# Meant for the drone to go up and down
 def UpDown(upDown):
     for x in range(upDown):
         drone.go(0, 0, 0, 90, upDown)
@@ -73,5 +79,7 @@ Spiral(2, "down")
     # code that section, slow down to basic music, small cicles and land.
 
 
+
+# Ends the drone's sequence
 drone.land()
 drone.close()
